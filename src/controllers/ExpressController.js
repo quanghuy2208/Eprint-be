@@ -32,7 +32,7 @@ const generateOtp = async (req, res) => {
 // Hàm kiểm tra mã OTP
 const validateOtp = async (otp, req, res) => {
   try {
-    console.log(req.body)
+    console.log(req)
     if (otp === req.body.userInput) {
     const response = { status: 'OK', message: 'Mã OTP hợp lệ!'};
     return res.status(200).json(response);
