@@ -36,7 +36,8 @@ const validateOtp = async (req, res) => {
     const response = { status: 'OK', message: 'Mã OTP hợp lệ!'};
     return res.status(200).json(response);
     } else {
-      throw new Error('Mã OTP không hợp lệ!');
+      const response = {message: 'Mã OTP không hợp lệ!'};
+    return res.status(200).json(response);
     }
   } catch (error) {
     console.error('Có lỗi xảy ra khi xác minh OTP:', error);
