@@ -117,6 +117,7 @@ const deleteMany = async (req, res) => {
 };
 
 const getAllUser = async (req, res) => {
+  console.log("aaaaaaaaaaaaaaaaaaaa")
   try {
     const response = await UserService.getAllUser();
     return res.status(200).json(response);
