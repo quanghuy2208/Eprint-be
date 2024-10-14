@@ -3,7 +3,7 @@ const JwtService = require("../services/JwtService");
 const User = require("../models/UserModel");
 const createUser = async (req, res) => {
   try {
-    const { name, email, password, level, otpCode } = req.body; // Thêm level và otpCode
+    const { name, email, password, level, otpCode } = req.body;
     const reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
     const isCheckEmail = reg.test(email);
     
