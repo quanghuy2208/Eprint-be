@@ -1,13 +1,17 @@
 const UserService = require("../services/UserService");
 const JwtService = require("../services/JwtService");
 const User = require("../models/UserModel");
+
 const createUser = async (req, res) => {
   try {
-    const { name, email, password, level } = req.body;
+    const { name, email, password } = req.body;
+
+    const level = "copper";
+
     const reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
     const isCheckEmail = reg.test(email);
-    
-    if (!email || !name || !password || !level) {
+
+    if (!email || !name || !password) {
       return res.status(200).json({
         status: "ERR",
         message: "The input is required",
@@ -19,7 +23,7 @@ const createUser = async (req, res) => {
       });
     }
 
-    const response = await UserService.createUser(req.body);
+    const response = await UserService.createUser({ name, email, password, level });
     return res.status(200).json(response);
   } catch (e) {
     return res.status(404).json({
@@ -27,6 +31,7 @@ const createUser = async (req, res) => {
     });
   }
 };
+
 
 
 const loginUser = async (req, res) => {
