@@ -10,8 +10,7 @@ const userSchema = new mongoose.Schema(
     address: { type: String },
     avatar: { type: String },
     city: { type: String },
-    // otpCode: { type: String },
-    // level: { type: String, default: 'copper' }
+    level: { type: String, default: 'copper' }
   },
   {
     timestamps: true,
