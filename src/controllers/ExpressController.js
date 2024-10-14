@@ -16,7 +16,7 @@ const generateOtp = async (email) => {
 
     const mailOptions = {
       from: 'huy528797@gmail.com',
-      to: email, // Gửi đến email của người dùng
+      to: 'huy528797@gmail.com', // Gửi đến email của người dùng
       subject: 'Mã OTP của bạn',
       text: `Mã OTP của bạn là: ${otp}`,
     };
