@@ -7,7 +7,6 @@ const {
 } = require("../middleware/authMiddleware");
 
 router.post("/generateOtp", expressController.generateOtp);
-router.post("/sendOtp", expressController.sendOtp);
 router.post("/validateOtp", expressController.validateOtp);
 
 router.post("/", (req, res) => res.send("ok"));

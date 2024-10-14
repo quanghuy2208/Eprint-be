@@ -9,14 +9,11 @@ redisClient.on('error', (err) => {
   console.error('Redis error: ', err);
 });
 
-// Hàm tạo mã OTP ngẫu nhiên
-const generateOtp = () => {
-  return Math.floor(100000 + Math.random() * 900000).toString();
-};
-
-// Hàm gửi OTP qua email
-const sendOtp = async (email) => {
-  const otp = generateOtp();
+// Hàm tạo mã OTP, lưu vào Redis và gửi email OTP
+const generateOtp = async (email) => {
+  const otp = Math.floor(100000 + Math.random() * 900000).toString();
+  
+  // Thiết lập cấu hình gửi email
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -34,15 +31,16 @@ const sendOtp = async (email) => {
 
   try {
     await transporter.sendMail(mailOptions);
+
     await redisClient.set(email, otp, 'EX', 300);
+
     return { status: 'OK', message: 'Mã OTP đã được gửi vào email của bạn.' };
   } catch (error) {
-    console.error('Có lỗi xảy ra khi gửi email:', error);
+    console.error('Có lỗi xảy ra khi gửi email hoặc tạo OTP:', error);
     throw new Error('Có lỗi xảy ra. Vui lòng thử lại.');
   }
 };
 
-// Hàm kiểm tra mã OTP
 const validateOtp = async (email, otp) => {
   const storedOtp = await redisClient.get(email);
 
@@ -56,6 +54,5 @@ const validateOtp = async (email, otp) => {
 
 module.exports = {
   generateOtp,
-  sendOtp,
   validateOtp,
 };
