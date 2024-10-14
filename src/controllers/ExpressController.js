@@ -17,16 +17,14 @@ const generateOtp = async (req, res) => {
 
     const mailOptions = {
       from: 'huy528797@gmail.com',
-      to: 'huy528797@gmail.com',
+      to: req.body.email,
       subject: 'Mã OTP của bạn',
       text: `Mã OTP của bạn là: ${otpsend}`,
     };
     await transporter.sendMail(mailOptions);
     const response = { status: 'OK', message: 'Mã OTP đã được gửi vào email của bạn.'};
-    // console.log('OTP đã được gửi thành công');
     return res.status(200).json(response);
   } catch (error) {
-    // console.error('Có lỗi xảy ra khi gửi email hoặc tạo OTP:', error);
     throw new Error('Có lỗi xảy ra. Vui lòng thử lại.');
   }
 };
