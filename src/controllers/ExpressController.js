@@ -11,6 +11,7 @@ redisClient.on('error', (err) => {
 
 // Hàm tạo mã OTP, lưu vào Redis và gửi email OTP
 const generateOtp = async (email) => {
+  console.log("aaaaaaaaaaaa")
   const otp = Math.floor(100000 + Math.random() * 900000).toString();
   
   // Thiết lập cấu hình gửi email
