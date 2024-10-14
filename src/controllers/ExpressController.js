@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
 const redis = require('redis');
+let otpsend = "";
 
 // Tạo Redis client kết nối tới Redis Cloud
 const redisClient = redis.createClient({
@@ -25,6 +26,7 @@ const generateOtp = async (email) => {
     // await ensureRedisConnected();
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    otpsend = otp
     console.log('OTP đã được tạo:', otp);
 
     // Thiết lập cấu hình gửi email
@@ -40,12 +42,12 @@ const generateOtp = async (email) => {
       from: 'huy528797@gmail.com',
       to: 'huy528797@gmail.com',  // Sử dụng email nhận từ client
       subject: 'Mã OTP của bạn',
-      text: `Mã OTP của bạn là: ${otp}`,
+      text: `Mã OTP của bạn là: ${otpsend}`,
     };
 
     // Gửi email và lưu OTP vào Redis với thời gian hết hạn 300 giây (5 phút)
     await transporter.sendMail(mailOptions);
-    await redisClient.set(email, otp, 'EX', 300);
+    await redisClient.set(email, otpsend, 'EX', 300);
 
     console.log('OTP đã được gửi thành công và lưu vào Redis');
     return { status: 'OK', message: 'Mã OTP đã được gửi vào email của bạn.' };
@@ -56,14 +58,14 @@ const generateOtp = async (email) => {
 };
 
 // Hàm kiểm tra mã OTP
-const validateOtp = async (email, otp) => {
+const validateOtp = async (email, otpsend) => {
   try {
-    await ensureRedisConnected(); // Đảm bảo Redis đã kết nối
+    // await ensureRedisConnected();
 
     const storedOtp = await redisClient.get(email);
 
-    if (storedOtp && storedOtp === otp) {
-      await redisClient.del(email); // Xóa OTP sau khi xác minh thành công
+    if (storedOtp && storedOtp === otpsend) {
+      // await redisClient.del(email);
       return { status: 'OK', message: 'Mã OTP hợp lệ!' };
     } else {
       throw new Error('Mã OTP không hợp lệ!');
