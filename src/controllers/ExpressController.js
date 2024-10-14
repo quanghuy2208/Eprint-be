@@ -29,7 +29,7 @@ const generateOtp = async (req, res) => {
 };
 
 const validateOtp = async (otp, req, res) => {
-  console.log(req.body.userInput)
+  console.log(req.body)
   try {
     if (otp === req.body.userInput) {
     const response = { status: 'OK', message: 'Mã OTP hợp lệ!'};
