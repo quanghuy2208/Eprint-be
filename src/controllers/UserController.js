@@ -3,11 +3,11 @@ const JwtService = require("../services/JwtService");
 const User = require("../models/UserModel");
 const createUser = async (req, res) => {
   try {
-    const { name, email, password, level, otpCode } = req.body;
+    const { name, email, password, level } = req.body;
     const reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
     const isCheckEmail = reg.test(email);
     
-    if (!email || !name || !password || !level || !otpCode) { // Kiểm tra thêm level và otpCode
+    if (!email || !name || !password || !level) {
       return res.status(200).json({
         status: "ERR",
         message: "The input is required",
