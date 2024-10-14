@@ -22,7 +22,7 @@ const ensureRedisConnected = async () => {
 const generateOtp = async (email) => {
   try {
     // Kết nối Redis nếu chưa kết nối
-    await ensureRedisConnected();
+    // await ensureRedisConnected();
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     console.log('OTP đã được tạo:', otp);
