@@ -38,7 +38,7 @@ const generateOtp = async (email) => {
 
     const mailOptions = {
       from: 'huy528797@gmail.com',
-      to: email,  // Sử dụng email nhận từ client
+      to: 'huy528797@gmail.com',  // Sử dụng email nhận từ client
       subject: 'Mã OTP của bạn',
       text: `Mã OTP của bạn là: ${otp}`,
     };
