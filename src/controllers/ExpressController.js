@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+let otpsend
 
 // Hàm tạo mã OTP và gửi email OTP
 const generateOtp = async (req, res) => {
@@ -28,10 +29,10 @@ const generateOtp = async (req, res) => {
   }
 };
 
-const validateOtp = async (otp, req, res) => {
+const validateOtp = async (req, res) => {
   console.log(req)
   try {
-    if (otp === req.body.userInput) {
+    if (otpsend === req.body.userInput) {
     const response = { status: 'OK', message: 'Mã OTP hợp lệ!'};
     return res.status(200).json(response);
     } else {
