@@ -1,9 +1,9 @@
 const nodemailer = require('nodemailer');
 
 // Hàm tạo mã OTP và gửi email OTP
-const generateOtp = async (email, res) => {
+const generateOtp = async (req, res) => {
   try {
-    console.log(res.data)
+    console.log(req.body)
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     otpsend = otp;
 
