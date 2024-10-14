@@ -1,11 +1,10 @@
 const nodemailer = require('nodemailer');
 
 // Hàm tạo mã OTP và gửi email OTP
-const generateOtp = async (email) => {
+const generateOtp = async (email, res) => {
   try {
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     otpsend = otp;
-    console.log('OTP đã được tạo:', otp);
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -21,11 +20,10 @@ const generateOtp = async (email) => {
       subject: 'Mã OTP của bạn',
       text: `Mã OTP của bạn là: ${otpsend}`,
     };
-
     await transporter.sendMail(mailOptions);
-
+    const response = { status: 'OK', message: 'Mã OTP đã được gửi vào email của bạn.'};
     console.log('OTP đã được gửi thành công');
-    return { status: 'OK', message: 'Mã OTP đã được gửi vào email của bạn.', otp: otpsend }; // Đảm bảo trả về thông tin OTP
+    return res.status(200).json(response);
   } catch (error) {
     console.error('Có lỗi xảy ra khi gửi email hoặc tạo OTP:', error);
     throw new Error('Có lỗi xảy ra. Vui lòng thử lại.');
