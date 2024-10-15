@@ -6,7 +6,7 @@ const {
   authUserMiddleWare,
 } = require("../middleware/authMiddleware");
 
-router.post("/getAllcategorylv1", CategoryController.getAllUser);
+router.get("/getAllcategorylv1", CategoryController.getAllUser);
 router.post("/", (req, res) => res.send("ok"));
 
 module.exports = router;
