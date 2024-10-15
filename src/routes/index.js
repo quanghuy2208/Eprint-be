@@ -7,6 +7,7 @@ const OrderCustomRouter = require("./OrderCustomRouter");
 const CollectionRouter = require("./CollectionRouter");
 const UploadFileRouter = require("./UploadFileRouter");
 const ExpressRouter = require("./ExpressRouter");
+const CategoryRouter = require("./CategoryRouter");
 
 const routes = (app) => {
   app.use("/api/user", UserRouter);
@@ -18,6 +19,7 @@ const routes = (app) => {
   app.use("/api/collection", CollectionRouter);
   app.use("/api/upload", UploadFileRouter);
   app.use("/api/express", ExpressRouter);
+  app.use("/api/category", CategoryRouter);
 };
 
 module.exports = routes;
