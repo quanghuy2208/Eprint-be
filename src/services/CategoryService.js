@@ -20,6 +20,7 @@ const bcrypt = require("bcrypt");
 
   const getAllCategorylv1 = () => {
     return new Promise(async (resolve, reject) => {
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaa")
       try {
         const allCategorylv1 = await CategoryProduct.find().sort({ createdAt: -1, updatedAt: -1 });
         resolve({
@@ -27,7 +28,6 @@ const bcrypt = require("bcrypt");
           message: "Success",
           data: allCategorylv1,
         });
-        console.log(resolve)
       } catch (e) {
         reject(e);
       }
