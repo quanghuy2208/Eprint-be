@@ -27,6 +27,7 @@ const bcrypt = require("bcrypt");
           message: "Success",
           data: allCategorylv1,
         });
+        console.log(resolve)
       } catch (e) {
         reject(e);
       }
