@@ -3,6 +3,7 @@ const JwtService = require("../services/JwtService");
 // const Category = require("../models/CategoryModel.js");
 
 const getAllCategorylv1 = async (req, res) => {
+    console.log(await CategoryService.getAllCategorylv1())
   try {
     const response = await CategoryService.getAllCategorylv1();
     return res.status(200).json(response);
