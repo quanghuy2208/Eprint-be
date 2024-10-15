@@ -6,6 +6,7 @@ async function getAllCategorylv1() {
     return new Promise(async (resolve, reject) => {
         try {
           const allCategorylv1 = await Category.find().sort({ createdAt: -1, updatedAt: -1 });
+          console.log(allCategorylv1)
           resolve({
             status: "OK",
             message: "Success",

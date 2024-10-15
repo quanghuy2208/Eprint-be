@@ -10,7 +10,6 @@ const userSchema = new mongoose.Schema(
     address: { type: String },
     avatar: { type: String },
     city: { type: String },
-    level: { type: String, default: 'copper' }
   },
   {
     timestamps: true,
