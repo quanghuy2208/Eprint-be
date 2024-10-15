@@ -2,9 +2,9 @@ const CategoryService = require("../services/CategoryService");
 const JwtService = require("../services/JwtService");
 // const Category = require("../models/CategoryModel.js");
 
-const getAllUser = async (req, res) => {
+const getAllCategorylv1 = async (req, res) => {
   try {
-    const response = await CategoryService.getAllUser();
+    const response = await CategoryService.getAllCategorylv1();
     return res.status(200).json(response);
   } catch (e) {
     return res.status(404).json({
@@ -14,5 +14,5 @@ const getAllUser = async (req, res) => {
 };
 
 module.exports = {
-  getAllUser,
+    getAllCategorylv1,
 };
