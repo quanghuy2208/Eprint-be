@@ -1,12 +1,11 @@
-const Category = require("../models/CategoryModel.js");
+const CategoryProduct = require("../models/CategoryModel.js");
 const bcrypt = require("bcrypt");
 // const { genneralAccessToken, genneralRefreshToken } = require("./JwtService");
 
 async function getAllCategorylv1() {
     return new Promise(async (resolve, reject) => {
         try {
-          const allCategorylv1 = await Category.find().sort({ createdAt: -1, updatedAt: -1 });
-          console.log(allCategorylv1)
+          const allCategorylv1 = await CategoryProduct.find().sort({ createdAt: -1, updatedAt: -1 });
           resolve({
             status: "OK",
             message: "Success",
