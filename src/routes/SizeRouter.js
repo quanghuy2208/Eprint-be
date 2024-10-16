@@ -7,7 +7,7 @@ const {
 } = require("../middleware/authMiddleware");
 
 router.get("/getallSize", SizeController.getallSize);
-router.post("/delete-size/:id", SizeController.deleteSize);
+router.delete("/delete-size/:id", SizeController.deleteSize);
 router.post("/", (req, res) => res.send("ok"));
 
 module.exports = router;
