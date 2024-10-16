@@ -17,6 +17,30 @@ const getAllSser = () => {
   });
 };
 
+const deleteUser = (id) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const checSize = await User.findOne({
+          _id: id,
+        });
+        if (checSize === null) {
+          resolve({
+            status: "ERR",
+            message: "The size is not defined",
+          });
+        }
+  
+        await Size.findByIdAndDelete(id);
+        resolve({
+          status: "OK",
+          message: "Delete size success",
+        });
+      } catch (e) {
+        reject(e);
+      }
+    });
+  };
+
 module.exports = {
     getAllSser,
 };
