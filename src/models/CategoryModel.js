@@ -8,9 +8,9 @@ const categoryProductSchema = new mongoose.Schema(
       timestamps: true,
     }
   );
-
+  console.log(categoryProductSchema)
   const CategoryProduct = mongoose.model("CategoryProduct", categoryProductSchema);
-  console.log(CategoryProduct)
+
 
 module.exports = CategoryProduct;
 
