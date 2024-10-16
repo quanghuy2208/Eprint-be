@@ -14,6 +14,7 @@ const getallSize = async (req, res) => {
 };
 
 const deleteSize = async (req, res) => {
+    console.log(req.params.id)
     try {
       const SizeId = req.params.id;
       if (!SizeId) {

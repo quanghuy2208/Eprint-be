@@ -20,7 +20,7 @@ const getAllSser = () => {
 const deleteSize = (id) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const checSize = await User.findOne({
+        const checSize = await Size.findOne({
           _id: id,
         });
         if (checSize === null) {
