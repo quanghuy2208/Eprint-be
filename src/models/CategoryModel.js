@@ -9,7 +9,7 @@ const categoryProductSchema = new mongoose.Schema(
     }
   );
 
-  const CategoryProduct = mongoose.model("CategoryProduct", categoryProductSchema);
+  const CategoryProduct = mongoose.model("CategoryProduct", categoryProductSchema, "category_products");
 
 
 module.exports = CategoryProduct;
