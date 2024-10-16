@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+console.log('bbbbbbbbb')
 const categoryProductSchema = new mongoose.Schema(
     {
       name: { type: String, required: true, unique: true },
@@ -8,7 +8,7 @@ const categoryProductSchema = new mongoose.Schema(
       timestamps: true,
     }
   );
-  console.log('bbbbbbbbb')
+
   const CategoryProduct = mongoose.model("CategoryProduct", categoryProductSchema);
 
 
