@@ -1,4 +1,4 @@
-const CategoryProduct = require("../models/CategoryModel.js");
+const CategoryProduct = require("../models/CategoryModel");
 const bcrypt = require("bcrypt");
 
   const getAllCategorylv1 = () => {
