@@ -22,7 +22,7 @@ const deleteSize = async (req, res) => {
           message: "The SizeId is required",
         });
       }
-      const response = await SizeService.deleteUser(SizeId);
+      const response = await SizeService.deleteSize(SizeId);
       return res.status(200).json(response);
     } catch (e) {
       return res.status(404).json({

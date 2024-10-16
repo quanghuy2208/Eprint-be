@@ -17,7 +17,7 @@ const getAllSser = () => {
   });
 };
 
-const deleteUser = (id) => {
+const deleteSize = (id) => {
     return new Promise(async (resolve, reject) => {
       try {
         const checSize = await User.findOne({
@@ -43,4 +43,5 @@ const deleteUser = (id) => {
 
 module.exports = {
     getAllSser,
+    deleteSize,
 };
