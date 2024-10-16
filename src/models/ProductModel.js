@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema(
+
   {
     name: { type: String, required: true, unique: true },
     typeName: { type: String, required: true },
@@ -13,6 +14,7 @@ const productSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+console.log(productSchema)
 const Product = mongoose.model("Product", productSchema);
 console.log(productSchema)
 
