@@ -10,7 +10,7 @@ const categoryProductSchema = new mongoose.Schema(
   );
 
   const CategoryProduct = mongoose.model("CategoryProduct", categoryProductSchema);
-  console.log('bbbbbbbbbb')
+  console.log(CategoryProduct)
 
 module.exports = CategoryProduct;
 
