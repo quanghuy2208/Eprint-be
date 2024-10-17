@@ -51,7 +51,6 @@ const loginUser = async (req, res) => {
     }
 
     const response = await UserService.loginUser(req.body);
-    console.log("aaaaaaaaaaaaaaa")
 
     const { refresh_token, ...newReponse } = response;
 
