@@ -34,7 +34,6 @@ const createUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
   try {
-
     const { email, password } = req.body;
     const reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
     const isCheckEmail = reg.test(email);
@@ -50,6 +49,7 @@ const loginUser = async (req, res) => {
         message: "The input is email",
       });
     }
+    console.log(req.body)
     const response = await UserService.loginUser(req.body);
 
     const { refresh_token, ...newReponse } = response;
