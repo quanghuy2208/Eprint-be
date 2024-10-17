@@ -50,7 +50,7 @@ const loginUser = async (req, res) => {
         message: "The input is email",
       });
     }
-    console.log(UserService)
+    console.log(UserService.loginUser)
     const response = await UserService.loginUser(req.body);
 
     const { refresh_token, ...newReponse } = response;
