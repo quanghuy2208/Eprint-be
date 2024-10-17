@@ -40,7 +40,6 @@ const loginUser = (userLogin) => {
     try {
       const checkUser = await User.findOne({ email });
 
-      // Nếu người dùng không tồn tại
       if (!checkUser) {
         return resolve({
           status: "ERR",
@@ -48,7 +47,6 @@ const loginUser = (userLogin) => {
         });
       }
 
-      // So sánh mật khẩu
       const comparePassword = bcrypt.compareSync(password, checkUser.password);
 
       if (!comparePassword) {
@@ -57,8 +55,8 @@ const loginUser = (userLogin) => {
           message: "The password or email is incorrect",
         });
       }
+      console.log(comparePassword)
 
-      // Tạo access token và refresh token
       const access_token = await generateAccessToken({
         id: checkUser.id,
         isAdmin: checkUser.isAdmin,
@@ -69,7 +67,6 @@ const loginUser = (userLogin) => {
         isAdmin: checkUser.isAdmin,
       });
 
-      // Xác định vai trò admin và trả về kết quả thành công
       const isAdmin = checkUser.isAdmin;
       return resolve({
         status: "OK",
