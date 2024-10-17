@@ -55,12 +55,13 @@ const loginUser = (userLogin) => {
           message: "The password or email is incorrect",
         });
       }
+      console.log("vvvvvvvvvvvvvvv")
+
       const access_token = await genneralAccessToken({
         id: checkUser.id,
         isAdmin: checkUser.isAdmin,
       });
 
-    console.log("vvvvvvvvvvvvvvv")
       const refresh_token = await genneralRefreshToken({
         id: checkUser.id,
         isAdmin: checkUser.isAdmin,
