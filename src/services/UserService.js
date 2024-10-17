@@ -38,24 +38,23 @@ const loginUser = (userLogin) => {
   return new Promise(async (resolve, reject) => {
     const { email, password } = userLogin;
     try {
-      const checkUser = await User.findOne({ email });
-
-      if (!checkUser) {
-        return resolve({
+      const checkUser = await User.findOne({
+        email: email,
+      });
+      if (checkUser === null) {
+        resolve({
           status: "ERR",
           message: "The user is not defined",
         });
       }
-
       const comparePassword = bcrypt.compareSync(password, checkUser.password);
 
       if (!comparePassword) {
-        return resolve({
+        resolve({
           status: "ERR",
           message: "The password or email is incorrect",
         });
       }
-
       const access_token = await genneralAccessToken({
         id: checkUser.id,
         isAdmin: checkUser.isAdmin,
@@ -65,10 +64,9 @@ const loginUser = (userLogin) => {
         id: checkUser.id,
         isAdmin: checkUser.isAdmin,
       });
-
       const isAdmin = checkUser.isAdmin;
 
-      return resolve({
+      resolve({
         status: "OK",
         message: "SUCCESS",
         access_token,
@@ -76,8 +74,7 @@ const loginUser = (userLogin) => {
         isAdmin,
       });
     } catch (e) {
-      // Xử lý lỗi
-      return reject(e);
+      reject(e);
     }
   });
 };
