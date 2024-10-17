@@ -42,6 +42,7 @@ const loginUser = (userLogin) => {
       const checkUser = await User.findOne({
         email: email,
       });
+      console.log(checkUser)
       if (checkUser === null) {
         resolve({
           status: "ERR",
