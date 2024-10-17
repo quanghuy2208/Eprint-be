@@ -62,6 +62,7 @@ const loginUser = async (req, res) => {
     });
     return res.status(200).json({ ...newReponse, refresh_token });
   } catch (e) {
+    console.log(e)
     return res.status(404).json({
       message: e,
     });

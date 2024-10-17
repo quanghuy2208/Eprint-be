@@ -66,7 +66,6 @@ const loginUser = (userLogin) => {
         isAdmin: checkUser.isAdmin,
       });
       const isAdmin = checkUser.isAdmin;
-      console.log(isAdmin)
 
       resolve({
         status: "OK",
