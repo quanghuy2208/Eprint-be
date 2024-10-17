@@ -38,7 +38,7 @@ const loginUser = async (req, res) => {
     const { email, password } = req.body;
     const reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
     const isCheckEmail = reg.test(email);
-    console.log(isCheckEmail)
+
     if (!email || !password) {
       return res.status(200).json({
         status: "ERR",
@@ -51,6 +51,7 @@ const loginUser = async (req, res) => {
       });
     }
     const response = await UserService.loginUser(req.body);
+    console.log(response)
     const { refresh_token, ...newReponse } = response;
     res.cookie("refresh_token", refresh_token, {
       httpOnly: true,
