@@ -32,39 +32,48 @@ const createUser = async (req, res) => {
   }
 };
 
-
-
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-    const isCheckEmail = reg.test(email);
+
+    // Kiểm tra email và password có được nhập không
     if (!email || !password) {
-      return res.status(200).json({
+      return res.status(400).json({
         status: "ERR",
         message: "The input is required",
       });
-    } else if (!isCheckEmail) {
-      return res.status(200).json({
+    }
+
+    // Kiểm tra định dạng email
+    const reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+    const isCheckEmail = reg.test(email);
+    if (!isCheckEmail) {
+      return res.status(400).json({
         status: "ERR",
-        message: "The input is email",
+        message: "The input must be a valid email",
       });
     }
-    console.log("------------------")
+
+    // Gọi service để xử lý đăng nhập
     const response = await UserService.loginUser(req.body);
-    console.log("------------------")
-    console.log(response)
     const { refresh_token, ...newReponse } = response;
+
+    // Cài đặt cookie cho refresh token
     res.cookie("refresh_token", refresh_token, {
       httpOnly: true,
-      secure: false,
+      secure: false, // Để true nếu dùng HTTPS
       sameSite: "strict",
       path: "/",
     });
-    return res.status(200).json({ ...newReponse, refresh_token });
+
+    // Trả về kết quả thành công
+    return res.status(200).json(newReponse);
   } catch (e) {
-    return res.status(404).json({
-      message: e,
+    // Xử lý lỗi
+    return res.status(500).json({
+      status: "ERR",
+      message: "Internal server error",
+      error: e.message,
     });
   }
 };

@@ -34,40 +34,43 @@ const createUser = (newUser) => {
   });
 };
 
-
 const loginUser = (userLogin) => {
   return new Promise(async (resolve, reject) => {
     const { email, password } = userLogin;
     try {
-      const checkUser = await User.findOne({
-        email: email,
-      });
-      if (checkUser === null) {
-        resolve({
+      const checkUser = await User.findOne({ email });
+
+      if (!checkUser) {
+        return resolve({
           status: "ERR",
           message: "The user is not defined",
         });
       }
-      const comparePassword = bcrypt.compareSync(password, checkUser.password);
+
+      // So sánh mật khẩu (bất đồng bộ)
+      const comparePassword = await bcrypt.compare(password, checkUser.password);
 
       if (!comparePassword) {
-        resolve({
+        return resolve({
           status: "ERR",
           message: "The password or email is incorrect",
         });
       }
-      const access_token = await genneralAccessToken({
+
+      // Tạo token
+      const access_token = await generateAccessToken({
         id: checkUser.id,
         isAdmin: checkUser.isAdmin,
       });
 
-      const refresh_token = await genneralRefreshToken({
+      const refresh_token = await generateRefreshToken({
         id: checkUser.id,
         isAdmin: checkUser.isAdmin,
       });
+
+      // Trả về thông tin người dùng và token
       const isAdmin = checkUser.isAdmin;
-
-      resolve({
+      return resolve({
         status: "OK",
         message: "SUCCESS",
         access_token,
@@ -75,7 +78,7 @@ const loginUser = (userLogin) => {
         isAdmin,
       });
     } catch (e) {
-      reject(e);
+      return reject(e); // Trả về lỗi nếu có
     }
   });
 };
