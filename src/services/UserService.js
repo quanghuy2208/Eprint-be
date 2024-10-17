@@ -34,49 +34,40 @@ const createUser = (newUser) => {
   });
 };
 
+
 const loginUser = (userLogin) => {
   return new Promise(async (resolve, reject) => {
     const { email, password } = userLogin;
     try {
-      // Tìm người dùng bằng email
-      const checkUser = await User.findOne({ email: email });
-
-      console.log(checkUser);
-
-      // Nếu người dùng không tồn tại
-      if (!checkUser) {
-        return resolve({
+      const checkUser = await User.findOne({
+        email: email,
+      });
+      if (checkUser === null) {
+        resolve({
           status: "ERR",
           message: "The user is not defined",
         });
       }
-
-      // So sánh mật khẩu
-      const comparePassword = await bcrypt.compare(password, checkUser.password);
+      const comparePassword = bcrypt.compareSync(password, checkUser.password);
 
       if (!comparePassword) {
-        return resolve({
+        resolve({
           status: "ERR",
           message: "The password or email is incorrect",
         });
       }
-
-      // Tạo access token và refresh token
-      const access_token = await generateAccessToken({
+      const access_token = await genneralAccessToken({
         id: checkUser.id,
         isAdmin: checkUser.isAdmin,
       });
 
-      const refresh_token = await generateRefreshToken({
+      const refresh_token = await genneralRefreshToken({
         id: checkUser.id,
         isAdmin: checkUser.isAdmin,
       });
-
-      // Xác định vai trò admin
       const isAdmin = checkUser.isAdmin;
 
-      // Trả về kết quả thành công
-      return resolve({
+      resolve({
         status: "OK",
         message: "SUCCESS",
         access_token,
@@ -84,8 +75,7 @@ const loginUser = (userLogin) => {
         isAdmin,
       });
     } catch (e) {
-      // Xử lý lỗi
-      return reject(e);
+      reject(e);
     }
   });
 };
