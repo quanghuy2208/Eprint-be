@@ -38,39 +38,35 @@ const loginUser = (userLogin) => {
   return new Promise(async (resolve, reject) => {
     const { email, password } = userLogin;
     try {
-      const checkUser = await User.findOne({ email });
-
-      if (!checkUser) {
-        return resolve({
+      const checkUser = await User.findOne({
+        email: email,
+      });
+      if (checkUser === null) {
+        resolve({
           status: "ERR",
           message: "The user is not defined",
         });
       }
-
-      // So sánh mật khẩu (bất đồng bộ)
-      const comparePassword = await bcrypt.compare(password, checkUser.password);
+      const comparePassword = bcrypt.compareSync(password, checkUser.password);
 
       if (!comparePassword) {
-        return resolve({
+        resolve({
           status: "ERR",
           message: "The password or email is incorrect",
         });
       }
-
-      // Tạo token
-      const access_token = await generateAccessToken({
+      const access_token = await genneralAccessToken({
         id: checkUser.id,
         isAdmin: checkUser.isAdmin,
       });
 
-      const refresh_token = await generateRefreshToken({
+      const refresh_token = await genneralRefreshToken({
         id: checkUser.id,
         isAdmin: checkUser.isAdmin,
       });
-
-      // Trả về thông tin người dùng và token
       const isAdmin = checkUser.isAdmin;
-      return resolve({
+
+      resolve({
         status: "OK",
         message: "SUCCESS",
         access_token,
@@ -78,7 +74,7 @@ const loginUser = (userLogin) => {
         isAdmin,
       });
     } catch (e) {
-      return reject(e); // Trả về lỗi nếu có
+      reject(e);
     }
   });
 };
