@@ -56,15 +56,12 @@ const loginUser = (userLogin) => {
         });
       }
 
-      const access_token = await generateAccessToken({
+      const access_token = await genneralAccessToken({
         id: checkUser.id,
         isAdmin: checkUser.isAdmin,
       });
-      console.log(access_token)
-      console.log("----------")
-      console.log(checkUser)
 
-      const refresh_token = await generateRefreshToken({
+      const refresh_token = await genneralRefreshToken({
         id: checkUser.id,
         isAdmin: checkUser.isAdmin,
       });
