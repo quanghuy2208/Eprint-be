@@ -50,8 +50,9 @@ const loginUser = async (req, res) => {
         message: "The input is email",
       });
     }
+    console.log(UserService)
     const response = await UserService.loginUser(req.body);
-    console.log(response)
+
     const { refresh_token, ...newReponse } = response;
     res.cookie("refresh_token", refresh_token, {
       httpOnly: true,
