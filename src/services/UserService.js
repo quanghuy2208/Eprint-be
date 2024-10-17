@@ -55,7 +55,6 @@ const loginUser = (userLogin) => {
           message: "The password or email is incorrect",
         });
       }
-      console.log(comparePassword)
 
       const access_token = await generateAccessToken({
         id: checkUser.id,
@@ -68,6 +67,7 @@ const loginUser = (userLogin) => {
       });
 
       const isAdmin = checkUser.isAdmin;
+      console.log(isAdmin)
       return resolve({
         status: "OK",
         message: "SUCCESS",
