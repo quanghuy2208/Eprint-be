@@ -39,7 +39,6 @@ const loginUser = (userLogin) => {
   return new Promise(async (resolve, reject) => {
     const { email, password } = userLogin;
     try {
-      console.log("aaaaaaaaaaaaaaaaaaaa")
       const checkUser = await User.findOne({
         email: email,
       });
@@ -57,6 +56,7 @@ const loginUser = (userLogin) => {
           message: "The password or email is incorrect",
         });
       }
+      console.log(checkUser)
       const access_token = await genneralAccessToken({
         id: checkUser.id,
         isAdmin: checkUser.isAdmin,
