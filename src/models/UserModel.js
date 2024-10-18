@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const userSchema = new mongoose.Schema(
   {
     name: { type: String },
@@ -10,12 +9,10 @@ const userSchema = new mongoose.Schema(
     address: { type: String },
     avatar: { type: String },
     city: { type: String },
-    level: { type: String, default: 'copper' }
   },
   {
     timestamps: true,
   }
 );
-
 const User = mongoose.model("User", userSchema);
 module.exports = User;
