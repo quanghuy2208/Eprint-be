@@ -3,7 +3,6 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const genneralAccessToken = async (payload) => {
-  console.log("zzzzzzzzzzzzz")
   const access_token = jwt.sign(
     {
       ...payload,

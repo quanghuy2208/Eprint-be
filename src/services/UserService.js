@@ -35,7 +35,6 @@ const createUser = (newUser) => {
 };
 
 const loginUser = (userLogin) => {
-
   return new Promise(async (resolve, reject) => {
     const { email, password } = userLogin;
     try {
@@ -56,7 +55,6 @@ const loginUser = (userLogin) => {
           message: "The password or email is incorrect",
         });
       }
-
       const access_token = await genneralAccessToken({
         id: checkUser.id,
         isAdmin: checkUser.isAdmin,
@@ -67,21 +65,19 @@ const loginUser = (userLogin) => {
         isAdmin: checkUser.isAdmin,
       });
       const isAdmin = checkUser.isAdmin;
-      console.log(checkUser.id)
+
       resolve({
         status: "OK",
         message: "SUCCESS",
         access_token,
         refresh_token,
         isAdmin,
-      })
-
+      });
     } catch (e) {
       reject(e);
     }
   });
 };
-
 const updateUser = (id, data) => {
   return new Promise(async (resolve, reject) => {
     try {
