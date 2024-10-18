@@ -69,10 +69,13 @@ const updateUser = async (req, res) => {
       });
     }
     const response = await UserService.updateUser(userId, data);
+    console.log(response)
     return res.status(200).json(response);
   } catch (e) {
-    return res.status(404).json({
-      message: e,
+    console.error("Lỗi khi đăng nhập người dùng:", e);  // Để ghi lại lỗi trong console
+    return res.status(500).json({
+      status: "ERR",
+      message: e.message || "Có lỗi xảy ra trong quá trình đăng nhập. Vui lòng thử lại sau.",
     });
   }
 };
