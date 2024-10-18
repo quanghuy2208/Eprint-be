@@ -66,13 +66,14 @@ const loginUser = (userLogin) => {
       });
       const isAdmin = checkUser.isAdmin;
 
-      resolve({
+      console.log(      resolve({
         status: "OK",
         message: "SUCCESS",
         access_token,
         refresh_token,
         isAdmin,
-      });
+      }))
+
     } catch (e) {
       reject(e);
     }
