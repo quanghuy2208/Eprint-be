@@ -27,7 +27,7 @@ const createUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
-  console.log(req.body)
+
   try {
     const { email, password } = req.body;
     const reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;

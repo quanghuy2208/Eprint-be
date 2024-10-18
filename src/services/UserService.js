@@ -35,6 +35,7 @@ const createUser = (newUser) => {
 };
 
 const loginUser = (userLogin) => {
+  console.log("aaaaaaaaaaaaaaaaaaaa")
   return new Promise(async (resolve, reject) => {
     const { email, password } = userLogin;
     try {
