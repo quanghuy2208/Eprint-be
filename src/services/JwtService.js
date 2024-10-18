@@ -11,7 +11,7 @@ const genneralAccessToken = async (payload) => {
     process.env.ACCESS_TOKEN,
     { expiresIn: "30s" }
   );
-  console.log(refresh_token)
+  console.log(access_token)
   return access_token;
 };
 
