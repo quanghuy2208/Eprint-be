@@ -72,7 +72,7 @@ const updateUser = async (req, res) => {
     console.log(response)
     return res.status(200).json(response);
   } catch (e) {
-    console.error("Lỗi khi đăng nhập người dùng:", e);  // Để ghi lại lỗi trong console
+    console.error("Lỗi khi đăng nhập người dùng:", e);
     return res.status(500).json({
       status: "ERR",
       message: e.message || "Có lỗi xảy ra trong quá trình đăng nhập. Vui lòng thử lại sau.",
