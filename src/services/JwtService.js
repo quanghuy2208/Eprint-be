@@ -22,6 +22,7 @@ const genneralRefreshToken = async (payload) => {
     process.env.REFRESH_TOKEN,
     { expiresIn: "365d" }
   );
+  console.log(refresh_token)
 
   return refresh_token;
 };

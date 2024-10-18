@@ -56,6 +56,8 @@ const loginUser = (userLogin) => {
         });
       }
 
+      console.log(genneralAccessToken)
+
       const access_token = await genneralAccessToken({
         id: checkUser.id,
         isAdmin: checkUser.isAdmin,
