@@ -42,6 +42,7 @@ const loginUser = async (req, res) => {
         message: "The input is email",
       });
     }
+    console.log("aaaaaaaaaaaaaaaaaaa")
     const response = await UserService.loginUser(req.body);
     const { refresh_token, ...newReponse } = response;
     res.cookie("refresh_token", refresh_token, {
@@ -52,7 +53,7 @@ const loginUser = async (req, res) => {
     });
     return res.status(200).json({ ...newReponse, refresh_token });
   } catch (e) {
-    console.log("aaaaaaaaaaaaaaaaaaa")
+
     return res.status(404).json({
       message: e,
     });
