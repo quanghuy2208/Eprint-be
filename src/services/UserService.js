@@ -55,6 +55,7 @@ const loginUser = (userLogin) => {
           message: "The password or email is incorrect",
         });
       }
+      console.log(comparePassword)
       const access_token = await genneralAccessToken({
         id: checkUser.id,
         isAdmin: checkUser.isAdmin,
