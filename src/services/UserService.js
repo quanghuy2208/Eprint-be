@@ -78,6 +78,7 @@ const loginUser = (userLogin) => {
     }
   });
 };
+
 const updateUser = (id, data) => {
   return new Promise(async (resolve, reject) => {
     try {

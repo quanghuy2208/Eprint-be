@@ -42,7 +42,6 @@ const loginUser = async (req, res) => {
         message: "The input is email",
       });
     }
-
     const response = await UserService.loginUser(req.body);
     const { refresh_token, ...newReponse } = response;
     res.cookie("refresh_token", refresh_token, {
@@ -53,7 +52,6 @@ const loginUser = async (req, res) => {
     });
     return res.status(200).json({ ...newReponse, refresh_token });
   } catch (e) {
-
     return res.status(404).json({
       message: e,
     });
@@ -71,13 +69,10 @@ const updateUser = async (req, res) => {
       });
     }
     const response = await UserService.updateUser(userId, data);
-    console.log(response)
     return res.status(200).json(response);
   } catch (e) {
-    console.error("Lỗi khi đăng nhập người dùng:", e);
-    return res.status(500).json({
-      status: "ERR",
-      message: e.message || "Có lỗi xảy ra trong quá trình đăng nhập. Vui lòng thử lại sau.",
+    return res.status(404).json({
+      message: e,
     });
   }
 };
