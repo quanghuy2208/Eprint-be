@@ -74,6 +74,7 @@ const loginUser = (userLogin) => {
         isAdmin,
       });
     } catch (e) {
+      console.log("saaaaaaaaaaaaaa")
       reject(e);
     }
   });
