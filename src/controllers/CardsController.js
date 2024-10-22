@@ -26,6 +26,7 @@ const getAllCards = async (req, res) => {
 
   const updateCard = async (req, res) => {
     console.log(req)
+    console.log(res)
     // try {
     //   const userId = req.params.id;
     //   const data = req.body;
