@@ -7,6 +7,7 @@ const {
 } = require("../middleware/authMiddleware");
 
 router.get("/getAllCards", CardsController.getAllCards);
+router.get("/getCardsUser", CardsController.getCardsUser);
 
 router.post("/", (req, res) => res.send("ok"));
 

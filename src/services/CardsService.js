@@ -17,6 +17,23 @@ const getAllCard = () => {
     });
   };
 
+  const getCardsUser = () => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const allCards = await Cards.find().sort({ createdAt: -1, updatedAt: -1 });
+        console.log(allCards)
+        resolve({
+          status: "OK",
+          message: "Success",
+          data: allCards,
+        });
+      } catch (e) {
+        reject(e);
+      }
+    });
+  };
+
   module.exports = {
-    getAllCard
+    getAllCard,
+    getCardsUser
   }

@@ -13,6 +13,18 @@ const getAllCards = async (req, res) => {
     }
   };
 
+  const getCardsUser = async (req, res) => {
+    try {
+      const response = await CardsService.getCardsUser();
+      return res.status(200).json(response);
+    } catch (e) {
+      return res.status(404).json({
+        message: e,
+      });
+    }
+  };
+
   module.exports = {
-    getAllCards
+    getAllCards,
+    getCardsUser
   }
