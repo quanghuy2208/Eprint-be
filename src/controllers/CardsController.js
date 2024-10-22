@@ -25,6 +25,7 @@ const getAllCards = async (req, res) => {
   };
 
   const updateCard = async (req, res) => {
+    console.log("aaaaaaaaaaaaaaaaaaaaaa")
     console.log(req)
     console.log(res)
     // try {
