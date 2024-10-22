@@ -10,8 +10,7 @@ const CardsSchema = new mongoose.Schema(
   }
 );
 
-// Tạo compound index cho user_id và products
-CardsSchema.index({ user_id: 1, products: 1 }, { unique: true });
+// CardsSchema.index({ user_id: 1, products: 1 }, { unique: true });
 
 const Cards = mongoose.model("Cards", CardsSchema, "cards");
 module.exports = Cards;
