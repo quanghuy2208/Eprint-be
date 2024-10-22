@@ -33,7 +33,45 @@ const getAllCard = () => {
     });
   };
 
+  const updateCard = async (cartId, productId, quantity) => {
+    try {
+
+      const cart = await Cards.findById(cartId);
+      if (!cart) {
+        return {
+          status: "ERR",
+          message: "Giỏ hàng không tồn tại",
+        };
+      }
+  
+      const productIndex = cart.products.findIndex(product => product.products_id === productId);
+      if (productIndex === -1) {
+        return {
+          status: "ERR",
+          message: "Sản phẩm không tồn tại trong giỏ hàng",
+        };
+      }
+  
+      cart.products[productIndex].quantity = quantity;
+  
+      await cart.save();
+  
+      return {
+        status: "OK",
+        message: "Cập nhật giỏ hàng thành công",
+        data: cart,
+      };
+    } catch (e) {
+      return {
+        status: "ERR",
+        message: "Đã xảy ra lỗi",
+        error: e,
+      };
+    }
+  };
+
   module.exports = {
     getAllCard,
-    getCardsUser
+    getCardsUser,
+    updateCard
   }
