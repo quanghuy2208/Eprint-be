@@ -9,6 +9,7 @@ const UploadFileRouter = require("./UploadFileRouter");
 const ExpressRouter = require("./ExpressRouter");
 const CategoryRouter = require("./CategoryRouter");
 const SizeRouter = require("./SizeRouter");
+const CardsRouter = require("./CardsRouter");
 
 const routes = (app) => {
   app.use("/api/user", UserRouter);
@@ -22,6 +23,7 @@ const routes = (app) => {
   app.use("/api/express", ExpressRouter);
   app.use("/api/category", CategoryRouter);
   app.use("/api/size", SizeRouter);
+  app.use("/api/cards", CardsRouter);
 };
 
 module.exports = routes;
