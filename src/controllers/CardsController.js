@@ -25,9 +25,10 @@ const getAllCards = async (req, res) => {
   };
 
   const updateCard = async (req, res) => {
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaa")
     console.log(req.params)
     try {
-      const userId = req.params.id;
+      const userId = req.params.id;a
       const data = req.body;
       if (!userId) {
         return res.status(200).json({
