@@ -25,18 +25,17 @@ const getAllCards = async (req, res) => {
   };
 
   const updateCard = async (req, res) => {
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaa")
-    console.log(req.params)
+
     try {
-      const userId = req.params.id;a
+      const cardsId = req.params.id;
       const data = req.body;
-      if (!userId) {
+      if (!cardsId) {
         return res.status(200).json({
           status: "ERR",
-          message: "The userId is required",
+          message: "Thiếu trường ID giỏ hàng",
         });
       }
-      const response = await UserService.updateCard(userId, data);
+      const response = await UserService.updateCard(cardsId, data);
       return res.status(200).json(response);
     } catch (e) {
       return res.status(404).json({

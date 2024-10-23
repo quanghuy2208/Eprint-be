@@ -20,6 +20,7 @@ const getAllCard = () => {
   const getCardsUser = () => {
     return new Promise(async (resolve, reject) => {
       try {
+        console.log("cccccccccccccc")
         const allCards = await Cards.find().sort({ createdAt: -1, updatedAt: -1 });
         console.log(allCards)
         resolve({
