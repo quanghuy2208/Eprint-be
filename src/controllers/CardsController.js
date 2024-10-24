@@ -46,7 +46,7 @@ const getAllCards = async (req, res) => {
 
   const deleteCard = async (req, res) => {
     try {
-      console.log(req.body)
+      console.log(req.params)
       const cardsId = req.params.id;
       const { productId } = req.body;
   
