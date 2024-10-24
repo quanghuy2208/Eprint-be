@@ -34,8 +34,9 @@ const getAllCard = () => {
   };
 
   const addToCard = (newProduct) => {
-    console.log(newProduct)
+
     return new Promise(async (resolve, reject) => {
+      console.log(newProduct)
       const { products_id, products_image, products_price, products_name } = newProduct;
   
       try {
