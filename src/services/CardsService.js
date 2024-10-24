@@ -33,6 +33,52 @@ const getAllCard = () => {
     });
   };
 
+  const addToCard = (userId, newProduct) => {
+    return new Promise(async (resolve, reject) => {
+      const { products_id, products_image, products_price, products_name } = newProduct;
+  
+      try {
+        // Kiểm tra xem người dùng đã có giỏ hàng chưa
+        let cart = await Cards.findOne({ user_id: userId });
+  
+        if (!cart) {
+          cart = await Cards.create({
+            user_id: userId,
+            products: [{
+              products_id,
+              products_image,
+              products_price,
+              products_name,
+            }],
+          });
+  
+          return resolve({
+            status: "OK",
+            message: "Cart created and product added successfully",
+            data: cart,
+          });
+        }
+  
+        cart.products.push({
+          products_id,
+          products_image,
+          products_price,
+          products_name,
+        });
+  
+        await cart.save();
+  
+        resolve({
+          status: "OK",
+          message: "Product added to cart successfully",
+          data: cart,
+        });
+      } catch (e) {
+        reject(e);
+      }
+    });
+  };
+  
   const updateCard = async (cartId, productId) => {
 
     try {
@@ -113,5 +159,6 @@ const getAllCard = () => {
     getAllCard,
     getCardsUser,
     updateCard,
-    deleteCard
+    deleteCard,
+    addToCard
   }

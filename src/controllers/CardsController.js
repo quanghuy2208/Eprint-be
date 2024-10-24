@@ -13,6 +13,30 @@ const getAllCards = async (req, res) => {
     }
   };
 
+  const addToCard = async (req, res) => {
+    try {
+      const { productId, quantity, user_id } = req.body;
+  
+      if (!productId || !quantity || !user_id) {
+        return res.status(400).json({
+          status: "ERR",
+          message: "Product ID and quantity are required",
+        });
+      }
+  
+      const response = await CardsService.addToCard(user_id, productId, quantity);
+  
+      return res.status(200).json(response);
+    } catch (e) {
+      return res.status(500).json({
+        status: "ERR",
+        message: "An error occurred while adding the product to the cart",
+        error: e.message,
+      });
+    }
+  };
+  
+
   const getCardsUser = async (req, res) => {
     try {
       const response = await CardsService.getCardsUser();
@@ -80,5 +104,6 @@ const getAllCards = async (req, res) => {
     getAllCards,
     getCardsUser,
     updateCard,
-    deleteCard
+    deleteCard,
+    addToCard
   }
