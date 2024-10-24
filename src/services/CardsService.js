@@ -35,9 +35,9 @@ const getAllCard = () => {
 
   const addToCard = (newProduct) => {
     return new Promise(async (resolve, reject) => {
-      console.log(newProduct);
   
       const { productId, quantity, user_id, products_name, products_image, products_price } = newProduct;
+      console.log(products_name)
       const products_id = productId
       try {
         let cart = await Cards.findOne({ user_id: user_id });
