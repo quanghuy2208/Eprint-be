@@ -37,17 +37,18 @@ const getAllCard = () => {
 
     return new Promise(async (resolve, reject) => {
       console.log(newProduct)
-      const { products_id, products_image, products_price, products_name } = newProduct;
+      const { productId, quantity, user_id, products_name , products_image, products_price } = newProduct;
   
       try {
         // Kiểm tra xem người dùng đã có giỏ hàng chưa
-        let cart = await Cards.findOne({ user_id: userId });
+        let cart = await Cards.findOne({ user_id: user_id });
   
         if (!cart) {
           cart = await Cards.create({
-            user_id: userId,
+            user_id: user_id,
             products: [{
-              products_id,
+              productId,
+              quantity,
               products_image,
               products_price,
               products_name,
@@ -62,7 +63,8 @@ const getAllCard = () => {
         }
   
         cart.products.push({
-          products_id,
+          productId,
+          quantity,
           products_image,
           products_price,
           products_name,
