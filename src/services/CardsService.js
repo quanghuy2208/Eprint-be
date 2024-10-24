@@ -71,6 +71,7 @@ const getAllCard = () => {
   };
 
   const deleteCard = async (cartId, productId) => {
+    console.log(productId)
     try {
 
       const cart = await Cards.findById(cartId);
