@@ -6,7 +6,10 @@ const CardsSchema = new mongoose.Schema(
       products: [
         {
           products_id: { type: String, required: true },
-          quantity: { type: Number, required: true }
+          quantity: { type: Number, required: true },
+          products_name: { type: String },
+          products_image: { type: String },
+          products_price: { type: Number },
         }
       ],
     },
