@@ -53,7 +53,7 @@ console.log(productId.quantity)
         };
       }
   
-      cart.products[productIndex].quantity = quantity;
+      cart.products[productIndex].quantity = productId.quantity;
   
       await cart.save();
   
