@@ -82,7 +82,7 @@ const getAllCard = () => {
         };
       }
   
-      const productIndex = cart.products.findIndex(product => product.products_id === productId.productId);
+      const productIndex = cart.products.findIndex(product => product.products_id === productId);
       
       if (productIndex === -1) {
         return {
