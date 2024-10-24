@@ -34,24 +34,23 @@ const getAllCard = () => {
   };
 
   const addToCard = (newProduct) => {
-
     return new Promise(async (resolve, reject) => {
-      console.log(newProduct)
-      const { productId, quantity, user_id, products_name , products_image, products_price } = newProduct;
+      console.log(newProduct);
+  
+      const { productId, quantity, user_id, products_name, products_image, products_price } = newProduct;
   
       try {
-        // Kiểm tra xem người dùng đã có giỏ hàng chưa
         let cart = await Cards.findOne({ user_id: user_id });
   
         if (!cart) {
           cart = await Cards.create({
             user_id: user_id,
             products: [{
-              productId,
-              quantity,
+              products_id: productId,
+              products_name,
               products_image,
               products_price,
-              products_name,
+              quantity
             }],
           });
   
@@ -62,13 +61,19 @@ const getAllCard = () => {
           });
         }
   
-        cart.products.push({
-          productId,
-          quantity,
-          products_image,
-          products_price,
-          products_name,
-        });
+        const productIndex = cart.products.findIndex(product => product.products_id === products_id);
+  
+        if (productIndex > -1) {
+          cart.products[productIndex].quantity += quantity;
+        } else {
+          cart.products.push({
+              products_id: productId,
+              products_name,
+              products_image,
+              products_price,
+              quantity
+          });
+        }
   
         await cart.save();
   
@@ -78,10 +83,15 @@ const getAllCard = () => {
           data: cart,
         });
       } catch (e) {
-        reject(e);
+        reject({
+          status: "ERR",
+          message: "Error adding product to cart",
+          error: e.message
+        });
       }
     });
   };
+  
   
   const updateCard = async (cartId, productId) => {
 
