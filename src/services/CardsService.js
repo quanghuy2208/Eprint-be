@@ -38,19 +38,20 @@ const getAllCard = () => {
       console.log(newProduct);
   
       const { productId, quantity, user_id, products_name, products_image, products_price } = newProduct;
-  
+      const products_id = productId
       try {
         let cart = await Cards.findOne({ user_id: user_id });
+        console.log(cart)
   
         if (!cart) {
           cart = await Cards.create({
             user_id: user_id,
             products: [{
-              products_id: productId,
+              products_id,
+              quantity,
               products_name,
               products_image,
-              products_price,
-              quantity
+              products_price
             }],
           });
   
@@ -67,11 +68,11 @@ const getAllCard = () => {
           cart.products[productIndex].quantity += quantity;
         } else {
           cart.products.push({
-              products_id: productId,
-              products_name,
-              products_image,
-              products_price,
-              quantity
+            products_id,
+            quantity,
+            products_name,
+            products_image,
+            products_price
           });
         }
   
@@ -91,7 +92,6 @@ const getAllCard = () => {
       }
     });
   };
-  
   
   const updateCard = async (cartId, productId) => {
 
