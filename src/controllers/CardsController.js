@@ -46,9 +46,9 @@ const getAllCards = async (req, res) => {
 
   const deleteCard = async (req, res) => {
     try {
+      console.log(req)
       const cardsId = req.params.id;
       const data = req.body;
-      console.log(data)
       if (!cardsId) {
         return res.status(200).json({
           status: "ERR",
