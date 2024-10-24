@@ -20,7 +20,6 @@ const getAllCard = () => {
   const getCardsUser = () => {
     return new Promise(async (resolve, reject) => {
       try {
-        console.log("cccccccccccccc")
         const allCards = await Cards.find().sort({ createdAt: -1, updatedAt: -1 });
         console.log(allCards)
         resolve({
@@ -35,6 +34,7 @@ const getAllCard = () => {
   };
 
   const updateCard = async (cartId, productId, quantity) => {
+    console.log("aaaaaaaaaaaaaaa")
     try {
 
       const cart = await Cards.findById(cartId);
