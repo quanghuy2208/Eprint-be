@@ -55,8 +55,6 @@ const loginUser = (userLogin) => {
           message: "The password or email is incorrect",
         });
       }
-      console.log("ACCESS_TOKEN:", process.env.ACCESS_TOKEN);
-      console.log("REFRESH_TOKEN:", process.env.REFRESH_TOKEN);
 
       const access_token = await genneralAccessToken({
         id: checkUser.id,
