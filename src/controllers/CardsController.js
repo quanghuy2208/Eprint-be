@@ -46,20 +46,38 @@ const getAllCards = async (req, res) => {
 
   const deleteCard = async (req, res) => {
     try {
-      console.log(req)
+
       const cardsId = req.params.id;
       const data = req.body;
+      
       if (!cardsId) {
-        return res.status(200).json({
+        return res.status(400).json({
           status: "ERR",
           message: "Thiếu trường ID giỏ hàng",
         });
       }
+  
       const response = await CardsService.deleteCard(cardsId, data);
-      return res.status(200).json(response);
+  
+      if (response.status === "ERR") {
+        return res.status(400).json({
+          status: "ERR",
+          message: response.message,
+        });
+      }
+  
+      return res.status(200).json({
+        status: "OK",
+        message: "Xóa sản phẩm khỏi giỏ hàng thành công",
+        data: response.data,
+      });
+  
     } catch (e) {
-      return res.status(404).json({
-        message: e,
+      console.error("Error during deleteCard:", e);
+      return res.status(500).json({
+        status: "ERR",
+        message: "Có lỗi xảy ra trong quá trình xóa sản phẩm khỏi giỏ hàng",
+        error: e.message || e,
       });
     }
   };
