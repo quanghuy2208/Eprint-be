@@ -33,7 +33,7 @@ const getAllCard = () => {
     });
   };
 
-  const updateCard = async (cartId, productId, quantity) => {
+  const updateCard = async (cartId, productId) => {
 
     try {
       const cart = await Cards.findById(cartId);

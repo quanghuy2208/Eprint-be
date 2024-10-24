@@ -48,6 +48,7 @@ const getAllCards = async (req, res) => {
     try {
       const cardsId = req.params.id;
       const data = req.body;
+      console.log(data)
       if (!cardsId) {
         return res.status(200).json({
           status: "ERR",
