@@ -46,9 +46,9 @@ const getAllCards = async (req, res) => {
 
   const deleteCard = async (req, res) => {
     try {
-      console.log(req)
+      console.log(req.query.productId)
       const cardsId = req.params.id;
-      const { productId } = req.body;
+      const productId = req.query.productId;
   
       if (!cardsId) {
         return res.status(400).json({
