@@ -34,7 +34,7 @@ const getAllCard = () => {
   };
 
   const updateCard = async (cartId, productId, quantity) => {
-console.log(productId.productId)
+console.log(productId.quantity)
     try {
 
       const cart = await Cards.findById(cartId);
