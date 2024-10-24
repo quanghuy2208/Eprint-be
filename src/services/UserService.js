@@ -47,7 +47,7 @@ const loginUser = (userLogin) => {
           message: "The user is not defined",
         });
       }
-      
+
       const comparePassword = bcrypt.compareSync(password, checkUser.password);
 
       if (!comparePassword) {
@@ -61,6 +61,7 @@ const loginUser = (userLogin) => {
         id: checkUser.id,
         isAdmin: checkUser.isAdmin,
       });
+      console.log(access_token)
 
       const refresh_token = await genneralRefreshToken({
         id: checkUser.id,
