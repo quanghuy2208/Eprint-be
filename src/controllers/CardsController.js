@@ -44,8 +44,28 @@ const getAllCards = async (req, res) => {
     }
   };
 
+  const deleteCard = async (req, res) => {
+    try {
+      const cardsId = req.params.id;
+      const data = req.body;
+      if (!cardsId) {
+        return res.status(200).json({
+          status: "ERR",
+          message: "Thiếu trường ID giỏ hàng",
+        });
+      }
+      const response = await CardsService.deleteCard(cardsId, data);
+      return res.status(200).json(response);
+    } catch (e) {
+      return res.status(404).json({
+        message: e,
+      });
+    }
+  };
+
   module.exports = {
     getAllCards,
     getCardsUser,
-    updateCard
+    updateCard,
+    deleteCard
   }
