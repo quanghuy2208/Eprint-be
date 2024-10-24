@@ -16,16 +16,17 @@ const getAllCards = async (req, res) => {
   const addToCard = async (req, res) => {
     console.log(req.body)
     try {
-      const { productId, quantity, user_id } = req.body;
+      // const { productId, quantity, user_id, products_name , products_image, products_price} = req.body;
+      const newProduct = req.body
   
-      if (!productId || !quantity || !user_id) {
+      if (!productId || !quantity || !user_id ) {
         return res.status(400).json({
           status: "ERR",
           message: "Product ID and quantity are required",
         });
       }
   
-      const response = await CardsService.addToCard(user_id, productId, quantity);
+      const response = await CardsService.addToCard(newProduct);
   
       return res.status(200).json(response);
     } catch (e) {
