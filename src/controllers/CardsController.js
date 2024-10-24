@@ -35,7 +35,7 @@ const getAllCards = async (req, res) => {
           message: "Thiếu trường ID giỏ hàng",
         });
       }
-      const response = await UserService.updateCard(cardsId, data);
+      const response = await CardsService.updateCard(cardsId, data);
       return res.status(200).json(response);
     } catch (e) {
       return res.status(404).json({
