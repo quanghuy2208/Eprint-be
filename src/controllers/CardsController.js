@@ -14,6 +14,7 @@ const getAllCards = async (req, res) => {
   };
 
   const addToCard = async (req, res) => {
+    console.log(req.body)
     try {
       const { productId, quantity, user_id } = req.body;
   
