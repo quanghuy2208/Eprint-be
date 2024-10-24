@@ -45,7 +45,7 @@ console.log(productId.productId)
         };
       }
   
-      const productIndex = cart.products.findIndex(product => product.products_id === productId);
+      const productIndex = cart.products.findIndex(product => product.products_id === productId.productId);
       if (productIndex === -1) {
         return {
           status: "ERR",
