@@ -61,7 +61,7 @@ const loginUser = (userLogin) => {
         id: checkUser._id,
         isAdmin: checkUser.isAdmin,
       });
-
+      console.log(access_token)
 
       const refresh_token = await genneralRefreshToken({
         id: checkUser._id,
