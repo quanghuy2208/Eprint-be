@@ -8,6 +8,8 @@ const {
 
 router.get("/getallSize", SizeController.getallSize);
 router.delete("/delete-size/:id", SizeController.deleteSize);
+router.put("/update-size/:id", SizeController.updateSize);
+
 router.post("/", (req, res) => res.send("ok"));
 
 module.exports = router;

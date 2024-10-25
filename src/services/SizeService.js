@@ -17,6 +17,33 @@ const getAllSser = () => {
   });
 };
 
+const updateSize = (id, data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const checkSize = await Size.findOne({
+        _id: id,
+      });
+      if (checkSize === null) {
+        resolve({
+          status: "ERR",
+          message: "The Size is not defined",
+        });
+      }
+
+      const updatedSize = await Size.findByIdAndUpdate(id, data, {
+        new: true,
+      });
+      resolve({
+        status: "OK",
+        message: "SUCCESS",
+        data: updatedSize,
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
 const deleteSize = (id) => {
     return new Promise(async (resolve, reject) => {
       try {
@@ -43,5 +70,6 @@ const deleteSize = (id) => {
 
 module.exports = {
     getAllSser,
+    updateSize,
     deleteSize,
 };
