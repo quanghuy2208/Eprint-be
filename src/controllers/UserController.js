@@ -143,7 +143,7 @@ const getDetailsUser = async (req, res) => {
   }
 };
 const getUserByMail = async (req, res) => {
-  const { email } = req.query; // Lấy email từ query parameters
+  const { email } = req.query;
   try {
     const user = await User.findOne({ email: email });
 
