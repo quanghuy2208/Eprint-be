@@ -7,6 +7,7 @@ const {
 } = require("../middleware/authMiddleware");
 
 router.get("/getallSize", SizeController.getallSize);
+router.get("/get-details/:id", SizeController.getDetailsSize);
 router.delete("/delete-size/:id", SizeController.deleteSize);
 router.put("/update-size/:id", SizeController.updateSize);
 
