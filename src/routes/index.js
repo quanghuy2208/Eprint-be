@@ -10,6 +10,7 @@ const ExpressRouter = require("./ExpressRouter");
 const CategoryRouter = require("./CategoryRouter");
 const SizeRouter = require("./SizeRouter");
 const CardsRouter = require("./CardsRouter");
+const TypeRouter = require("./TypeRouter");
 
 const routes = (app) => {
   app.use("/api/user", UserRouter);
@@ -24,6 +25,7 @@ const routes = (app) => {
   app.use("/api/category", CategoryRouter);
   app.use("/api/size", SizeRouter);
   app.use("/api/cards", CardsRouter);
+  app.use("/api/type", TypeRouter);
 };
 
 module.exports = routes;
