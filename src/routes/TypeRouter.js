@@ -7,6 +7,7 @@ const {
 } = require("../middleware/authMiddleware");
 
 router.get("/getallType", TypeController.getallType);
+router.get("/get-details/:id", TypeController.getDetailType);
 
 router.post("/", (req, res) => res.send("ok"));
 
